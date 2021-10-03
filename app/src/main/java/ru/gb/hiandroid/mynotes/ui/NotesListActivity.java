@@ -1,4 +1,4 @@
-package ru.gb.hiandroid.mynotes;
+package ru.gb.hiandroid.mynotes.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import ru.gb.hiandroid.mynotes.R;
 
 public class NotesListActivity extends AppCompatActivity {
+    private static final boolean DEBUG_FLAG = true;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
     private String log_modifyer = " ";
@@ -25,8 +27,6 @@ public class NotesListActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
     @Override
@@ -38,17 +38,25 @@ public class NotesListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.new_note_menu) {
-            logCycle("--< Menu! >--", true);
-            Intent intent = new Intent(this, NoteEditActivity.class);
-            startActivity(intent);
-            return true;
+        switch (item.getItemId()){
+            case R.id.new_note_menu : {
+                logCycle("--< Menu! >--", true);
+                openNoteScreen();
+                return true;
+            }
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openNoteScreen() {
+        Intent intent = new Intent(this, NoteEditActivity.class);
+        startActivity(intent);
     }
 
 
     protected void logCycle(String message, boolean noToast) {
+        if (!DEBUG_FLAG) { return; }
         Log.d(CUR_ACTIVITY_TAG + log_modifyer, message);
         if (noToast) {
             return;

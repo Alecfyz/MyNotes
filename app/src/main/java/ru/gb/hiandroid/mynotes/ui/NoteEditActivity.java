@@ -1,4 +1,4 @@
-package ru.gb.hiandroid.mynotes;
+package ru.gb.hiandroid.mynotes.ui;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,8 +6,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ru.gb.hiandroid.mynotes.R;
+
 public class NoteEditActivity extends AppCompatActivity {
-    private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
+    private final String CUR_ACTIVITY_TAG = "@@@@ EditActivity";
     private String log_modifyer = " ";
 
     @Override
