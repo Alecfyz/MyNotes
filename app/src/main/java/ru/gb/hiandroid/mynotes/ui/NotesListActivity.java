@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import ru.gb.hiandroid.mynotes.R;
@@ -24,7 +23,7 @@ public class NotesListActivity extends AppCompatActivity {
     private static final boolean DEBUG_FLAG = true;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
-    private String log_modifyer = " ";
+    private String log_modifier = " ";
 
     private NotesRepo notesRepo = new NotesRepoImpl();
 
@@ -74,7 +73,7 @@ public class NotesListActivity extends AppCompatActivity {
         if (!DEBUG_FLAG) {
             return;
         }
-        Log.d(CUR_ACTIVITY_TAG + log_modifyer, message);
+        Log.d(CUR_ACTIVITY_TAG + log_modifier, message);
         if (noToast) {
             return;
         }
@@ -86,11 +85,11 @@ public class NotesListActivity extends AppCompatActivity {
     }
 
     protected void fillRepoWithTestValues() {
-        notesRepo.createNote(new NoteEntity("Заметка 1", "asdasd asd fas df asdf 1"));
-        notesRepo.createNote(new NoteEntity("Заметка 2", "asdasd asd fas df asdf 2"));
-        notesRepo.createNote(new NoteEntity("Заметка 3", "asdasd asd fas df asdf 3"));
-        notesRepo.createNote(new NoteEntity("Заметка 4", "asdasd asd fas df asdf 4"));
-        notesRepo.createNote(new NoteEntity("Заметка 5", "asdasd asd fas df asdf 5"));
+        notesRepo.createNote(new NoteEntity("Заметка 1", "Заметка asdasd Заметка asdasd asd fas df asdf 1"));
+        notesRepo.createNote(new NoteEntity("Заметка 2", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 2"));
+        notesRepo.createNote(new NoteEntity("Заметка 3", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 3"));
+        notesRepo.createNote(new NoteEntity("Заметка 4", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 4"));
+        notesRepo.createNote(new NoteEntity("Заметка 5", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5"));
     }
 
     private void initToolbar() {

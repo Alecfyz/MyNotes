@@ -15,8 +15,9 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 
 public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
     private List<NoteEntity> data = new ArrayList<>();
-    public void setData(List<NoteEntity> data) {
 
+    public void setData(List<NoteEntity> data) {
+        this.data = data;
     }
 
     @NonNull
@@ -29,17 +30,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
     @Override
     public void onBindViewHolder(@NonNull NoteVH holder, int position) {
         NoteEntity note = getItem(position);
-
         holder.titleTextView.setText(note.getTitle());
         holder.descriptionTextView.setText(note.getDescription());
     }
 
     private NoteEntity getItem(int position) {
-       return data.get(position);
+        return data.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 }
