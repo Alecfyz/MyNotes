@@ -1,9 +1,12 @@
 package ru.gb.hiandroid.mynotes.domain;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public interface NotesRepo {
-    boolean createNote(NoteEntity note);
+    @Nullable
+    Integer createNote(NoteEntity note);
 
     List<NoteEntity> getNotes();
 

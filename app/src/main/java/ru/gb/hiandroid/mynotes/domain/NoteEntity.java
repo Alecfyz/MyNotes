@@ -4,12 +4,11 @@ import androidx.annotation.Nullable;
 
 public class NoteEntity {
     @Nullable
-    private final int id;
+    private int id;
     private String title;
     private String description;
 
-    public NoteEntity(@Nullable int id, String title, String description) {
-        this.id = id;
+    public NoteEntity(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -33,5 +32,9 @@ public class NoteEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setId(@Nullable Integer id) {
+        this.id = id;
     }
 }
