@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_padding">16dp</dimen>
+    <dimen name="notes_title_textsize">27sp</dimen>
+    <dimen name="notes_descr_textsize">18sp</dimen>
+</resources>
