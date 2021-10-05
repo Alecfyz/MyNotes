@@ -86,10 +86,10 @@ public class NotesListActivity extends AppCompatActivity {
 
     protected void fillRepoWithTestValues() {
         notesRepo.createNote(new NoteEntity("Заметка 1", "Заметка asdasd Заметка asdasd asd fas df asdf 1"));
-        notesRepo.createNote(new NoteEntity("Заметка 2", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 2"));
-        notesRepo.createNote(new NoteEntity("Заметка 3", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 3"));
-        notesRepo.createNote(new NoteEntity("Заметка 4", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 4"));
-        notesRepo.createNote(new NoteEntity("Заметка 5", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5"));
+        notesRepo.createNote(new NoteEntity("Заметка 2", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 2 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 3", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 3 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 4", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 4 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 5", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
     }
 
     private void initToolbar() {
