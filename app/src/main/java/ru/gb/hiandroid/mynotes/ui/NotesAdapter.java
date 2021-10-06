@@ -18,6 +18,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
 
     public void setData(List<NoteEntity> data) {
         this.data = data;
+        notifyDataSetChanged();
     }
 
     @NonNull

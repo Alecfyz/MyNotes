@@ -90,6 +90,14 @@ public class NotesListActivity extends AppCompatActivity {
         notesRepo.createNote(new NoteEntity("Заметка 3", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 3 длинный-длинный-длинный текст"));
         notesRepo.createNote(new NoteEntity("Заметка 4", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 4 длинный-длинный-длинный текст"));
         notesRepo.createNote(new NoteEntity("Заметка 5", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 6", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 6", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 7", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 8", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 10", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 11", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 12", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
+        notesRepo.createNote(new NoteEntity("Заметка 13", "Заметка asdasd Заметка asdasd asdasd asd fas df asdf 5 длинный-длинный-длинный текст"));
     }
 
     private void initToolbar() {

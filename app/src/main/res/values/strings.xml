@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyNotes</string>
     <string name="new_note_icon">New note</string>
+    <string name="note_title">Заголовок ноты</string>
 </resources>
