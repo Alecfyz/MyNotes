@@ -1,6 +1,7 @@
 package ru.gb.hiandroid.mynotes.ui;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,7 +56,7 @@ public class NotesListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.new_note_menu: {
                 logCycle("--< Menu! >--", true);
-                openNoteScreen();
+                openNoteScreen(null);
                 return true;
             }
         }
@@ -63,8 +64,10 @@ public class NotesListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void openNoteScreen() {
+    private void openNoteScreen(@Nullable NoteEntity item) {
         Intent intent = new Intent(this, NoteEditActivity.class);
+        // todo
+        // intent.putExtra("note, item) // make it parcelable
         startActivity(intent);
     }
 
@@ -109,6 +112,12 @@ public class NotesListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(this::onItemClick);
+
         adapter.setData(notesRepo.getNotes());
+    }
+
+    private void onItemClick(NoteEntity item) {
+        openNoteScreen(item);
     }
 }

@@ -2,4 +2,7 @@
     <string name="app_name">MyNotes</string>
     <string name="new_note_icon">New note</string>
     <string name="note_title">Заголовок ноты</string>
+    <string name="title_note_edit">Заголовок</string>
+    <string name="descr_note_edit">Descrption</string>
+    <string name="title_save_button">Save</string>
 </resources>

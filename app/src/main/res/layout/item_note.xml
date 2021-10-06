@@ -18,7 +18,7 @@
         android:singleLine="true"
         android:textSize="@dimen/notes_title_textsize"
         android:textStyle="bold"
-        ></TextView>
+        />
 
     <TextView
         android:id="@+id/description_text_view"
@@ -29,5 +29,5 @@
         android:textSize="@dimen/notes_descr_textsize"
         android:textStyle="italic"
         android:ellipsize="end"
-        ></TextView>
+        />
 </LinearLayout>

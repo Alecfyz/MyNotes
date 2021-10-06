@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NotesListActivity">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/layout_standart_margin"
+    tools:context=".ui.NoteEditActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/text_title_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="@string/title_note_edit"
+        android:autofillHints="@string/title_note_edit"
+        android:inputType="text"
+        android:textSize="@dimen/notes_title_textsize"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/text_descript_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/descr_note_edit"
+        android:inputType="text"
+        android:autofillHints="@string/descr_note_edit"
+        tools:text="Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания "
+        android:textSize="@dimen/notes_descr_textsize" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_save_button"
+        />
+
+</LinearLayout>
