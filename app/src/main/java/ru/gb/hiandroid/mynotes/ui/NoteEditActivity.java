@@ -37,7 +37,7 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
     private void checkIntent() {
-    // todo
+        // todo
         //getIntent
     }
 
