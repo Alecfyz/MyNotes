@@ -24,7 +24,7 @@ public class NotesListActivity extends AppCompatActivity {
     private static final boolean DEBUG_FLAG = true;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
-    private String log_modifier = " ";
+    private final String log_modifier = " ";
 
     private NotesRepo notesRepo = new NotesRepoImpl();
 

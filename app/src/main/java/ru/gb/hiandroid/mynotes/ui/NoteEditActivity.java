@@ -13,7 +13,7 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 
 public class NoteEditActivity extends AppCompatActivity {
     private final String CUR_ACTIVITY_TAG = "@@@@ EditActivity";
-    private String log_modifyer = " ";
+    private final String log_modifyer = " ";
     private EditText titleEditText;
     private EditText descrEditText;
     private Button saveButton;
