@@ -1,5 +1,7 @@
 package ru.gb.hiandroid.mynotes.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,6 +14,9 @@ import ru.gb.hiandroid.mynotes.R;
 import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 
 public class NoteEditActivity extends AppCompatActivity {
+    public static final String TITLE_EXTRA_KEY = "TITLE_EXTRA_KEY";
+    public static final String DESCR_EXTRA_KEY = "DESCR_EXTRA_KEY";
+    public static final String EVAL_TITLE_EXTRA_KEY = "EVAL_TITLE_EXTRA_KEY";
     private final String CUR_ACTIVITY_TAG = "@@@@ EditActivity";
     private final String log_modifyer = " ";
     private EditText titleEditText;
@@ -23,21 +28,29 @@ public class NoteEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_edit);
 
+        Intent data = checkIntent();
+        logCycle("data IN = " + data.getStringExtra(TITLE_EXTRA_KEY));
+
         initAllViews();
         saveButton.setOnClickListener(v -> {
             NoteEntity noteEntity = new NoteEntity(
                     titleEditText.getText().toString(),
                     descrEditText.getText().toString()
             );
-            // todo
+            Intent outData = new Intent();
+            outData.putExtra(EVAL_TITLE_EXTRA_KEY, titleEditText.getText().toString());
+            setResult(Activity.RESULT_OK, outData);
+            finish();
             // setResult...
         });
-        checkIntent();
+//        checkIntent();
 //        logCycle(" here I am!");
     }
 
-    private void checkIntent() {
+    private Intent checkIntent() {
         // todo
+        Intent tmpdata = getIntent();
+        return tmpdata;
         //getIntent
     }
 
