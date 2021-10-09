@@ -51,7 +51,7 @@ public class NotesListActivity extends AppCompatActivity {
 
 //        setAdditionButtonsListeners();
 //        makeCurLauncher();
-//        prepareLaunchers();
+        prepareLauncher();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class NotesListActivity extends AppCompatActivity {
         noteLauncher.launch(intent);
 
 //        startActivity(intent);
-        prepareLauncher();
+
     }
 
 /*    private void setAdditionButtonsListeners() { /// !!!!!!!!!!!!!!!!!!!1
@@ -107,8 +107,9 @@ public class NotesListActivity extends AppCompatActivity {
                 String newTitle = data.getStringExtra(NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
                 Toast.makeText(this, "Returned data = " + newTitle, Toast.LENGTH_SHORT).show();
 //                setLocalTheme(); /// Здесь делаем что-то в списке заметок. - меняем данные отредактированной заметки.м
+            } else {
+                logCycle("Return failed");
             }
-            logCycle("Return failed");
         });
     }
 
