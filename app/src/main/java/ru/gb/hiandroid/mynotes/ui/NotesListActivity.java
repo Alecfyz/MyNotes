@@ -97,7 +97,7 @@ public class NotesListActivity extends AppCompatActivity {
                 adapter.setData(notesRepo.getNotes());
                 adapter.notifyDataSetChanged();
                 logCycle("ID = " + retNote.getNoteId());
-                recyclerView.scrollToPosition(retNote.getNoteId()-1);
+                recyclerView.scrollToPosition(retNote.getNoteId() - 1);
             } else {
                 logCycle("Return is empty");
             }
