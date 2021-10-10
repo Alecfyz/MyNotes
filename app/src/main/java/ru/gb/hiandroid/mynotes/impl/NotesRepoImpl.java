@@ -1,8 +1,10 @@
 package ru.gb.hiandroid.mynotes.impl;
 
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ru.gb.hiandroid.mynotes.domain.NoteEntity;
@@ -22,7 +24,12 @@ public class NotesRepoImpl implements NotesRepo {
 
     @Override
     public List<NoteEntity> getNotes() {
-        return new ArrayList<>(cache) ;
+        ArrayList<NoteEntity> tmpNotesList = new ArrayList<>(cache);
+
+        if (!tmpNotesList.isEmpty()) {
+            Collections.sort(tmpNotesList, (p1, p2) -> p1.getNoteId() - p2.getNoteId());
+        }
+        return tmpNotesList ;
     }
 
     @Override

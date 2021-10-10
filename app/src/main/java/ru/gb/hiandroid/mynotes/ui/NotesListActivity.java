@@ -1,5 +1,6 @@
 package ru.gb.hiandroid.mynotes.ui;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -75,11 +76,8 @@ public class NotesListActivity extends AppCompatActivity {
     }
 
     private void openNoteScreen(@Nullable NoteEntity item) {
+        if (item == null) item = new NoteEntity("", "");
         Intent intent = new Intent(this, NoteEditActivity.class);
-//        Bundle outData;
-//        item.putParcelable(NoteEditActivity.NOTE_ID_EXTRA_KEY, item.getTitle());
-//        outData.putParcelable(NoteEditActivity.TITLE_EXTRA_KEY, item.getTitle());
-//        outData.putParcelable(NoteEditActivity.DESCRIPTION_EXTRA_KEY, item.getTitle());
         intent.putExtra(NoteEditActivity.NOTE_EXTRA_KEY, item);
         noteLauncher.launch(intent);
 
@@ -89,41 +87,23 @@ public class NotesListActivity extends AppCompatActivity {
     private void prepareLauncher() { /// !!!!!!!!!!!!!!!!!!!1
         noteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == Activity.RESULT_OK) {
-                Intent data = result.getData(); // это точка возврата из вызываемой активити!
-//                String newId =          data.getStringExtra (NoteEditActivity.NOTE_ID_EXTRA_KEY);
-//                String newTitle =       data.getStringExtra (NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
-//                String newDescription = data.getStringExtra (NoteEditActivity.EVAL_DESCR_EXTRA_KEY);
-//                String newIddd = data.getStringExtra ("EXXXTRA");
+                retNote = getNoteFromRetIntent(result); // это точка возврата из вызываемой активити!
 
-//                Bundle retdata = checkRetIntent();
-                retNote = getNoteFromRetIntent();
 
-                Toast.makeText(this, "Rettttt ti = " + retNote.getTitle(), Toast.LENGTH_LONG).show();
-//                Toast.makeText(this, "Ret id = " + retNote.getNoteId()
-//                                                + ", \nRet Title= " + retNote.getTitle()
-//                                                + ",\n Ret desc = " + retNote.getDescription(), Toast.LENGTH_LONG).show();
-//                setLocalTheme(); /// Здесь делаем что-то в списке заметок. - меняем данные отредактированной заметки.м
+                notesRepo.updateNote(retNote.getNoteId(), retNote);
+                adapter.setData(notesRepo.getNotes());
+                adapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
             } else {
                 logCycle("Return is empty");
             }
         });
     }
 
-    private NoteEntity getNoteFromRetIntent() {
-        Bundle tmpdata = getIntent().getExtras();
-/*        logCycle(
-                "\nID = " + tmpdata.getNoteId()
-                + "\nTitle = "+ tmpdata.getTitle()
-                + ", \nDescription = "+ tmpdata.getDescription()
-        );*/
-//        return data.getParcelable(NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
-        retNote = tmpdata.getParcelable(NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
+    private NoteEntity getNoteFromRetIntent(ActivityResult result) {
+        Intent data = result.getData(); // это точка возврата из вызываемой активити!
+        retNote = data.getParcelableExtra(NoteEditActivity.NOTE_EXTRA_KEY);
         return retNote;
-    }
-
-    private Bundle checkRetIntent() {
-        Bundle tmpdata = getIntent().getExtras();
-        return tmpdata;
     }
 
     protected void logCycle(String message, boolean noToast) {

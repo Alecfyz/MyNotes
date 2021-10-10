@@ -70,4 +70,11 @@ public class NoteEntity implements Parcelable {
         parcel.writeString(title);
         parcel.writeString(description);
     }
+
+    public int compareTo(NoteEntity u) {
+        if (getTitle() == null || u.getTitle() == null) {
+            return 0;
+        }
+        return getTitle().compareTo(u.getTitle());
+    }
 }

@@ -33,9 +33,6 @@ public class NoteEditActivity extends AppCompatActivity {
         Bundle data = checkIntent();
         note = getNoteFromIntent(data);
 
-//        logCycle(note, "BeforeInitViews");
-
-
         initAllViews();
         fillAllViews(note);
         saveButton.setOnClickListener(v -> {
@@ -44,22 +41,15 @@ public class NoteEditActivity extends AppCompatActivity {
                     titleEditText.getText().toString(),
                     descrEditText.getText().toString()
             );
-            noteEntity.setNoteId(note.getNoteId());
-//            Intent outData = new Intent();
-            Intent outData = new Intent(this, NoteEditActivity.class);
-//            Bundle bun = new Bundle(outData);
-//            logCycle("----====== id= " + note.getNoteId() + "===----");
-/*            outData.putExtra(NOTE_ID_EXTRA_KEY, note.getNoteId());
-            outData.putExtra(EVAL_TITLE_EXTRA_KEY, noteEntity.getTitle());
-            outData.putExtra(EVAL_DESCR_EXTRA_KEY, noteEntity.getDescription());*/
-//            outData.writeToParcel();
-            outData.putExtra(EVAL_TITLE_EXTRA_KEY, noteEntity);
-
-            logCycle(note, "BeforeSetResult");
-
-            setResult(Activity.RESULT_OK, outData);
+            if (noteEntity.getTitle().equals("") && noteEntity.getDescription().equals("")) {
+                setResult(Activity.RESULT_CANCELED);
+            } else {
+                noteEntity.setNoteId(note.getNoteId());
+                Intent outData = new Intent(this, NoteEditActivity.class);
+                outData.putExtra(NOTE_EXTRA_KEY, noteEntity);
+                setResult(Activity.RESULT_OK, outData);
+            }
             finish();
-            // setResult...
         });
     }
 
@@ -87,11 +77,11 @@ public class NoteEditActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.save_button);
     }
 
-    public void logCycle(NoteEntity note, String point){
+    public void logCycle(NoteEntity note, String point) {
         logCycle(point
                 + "\nID = " + note.getNoteId()
-                + "\nTitle = "+ note.getTitle()
-                + ", \nDescription = "+ note.getDescription()
+                + "\nTitle = " + note.getTitle()
+                + ", \nDescription = " + note.getDescription()
         );
     }
 
