@@ -15,9 +15,6 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 
 public class NoteEditActivity extends AppCompatActivity {
     public static final String NOTE_EXTRA_KEY = "NOTE_EXTRA_KEY";
-    public static final String NOTE_ID_EXTRA_KEY = "NOTE_ID_EXTRA_KEY";
-    public static final String EVAL_TITLE_EXTRA_KEY = "EVAL_TITLE_EXTRA_KEY";
-    public static final String EVAL_DESCR_EXTRA_KEY = "EVAL_DESCR_EXTRA_KEY";
     private final String CUR_ACTIVITY_TAG = "@@@@ EditActivity";
     private final String log_modifyer = " ";
     private EditText titleEditText;
@@ -64,11 +61,8 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
     private Bundle checkIntent() {
-        // todo
 //        Intent tmpdata = getIntent();
-        Bundle tmpdata = getIntent().getExtras();
-        return tmpdata;
-        //getIntent
+        return getIntent().getExtras();
     }
 
     private void initAllViews() {
