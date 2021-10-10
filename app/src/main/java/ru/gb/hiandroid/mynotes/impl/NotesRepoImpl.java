@@ -1,8 +1,13 @@
 package ru.gb.hiandroid.mynotes.impl;
 
 
+import android.content.Context;
+
 import androidx.annotation.Nullable;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,4 +55,19 @@ public class NotesRepoImpl implements NotesRepo {
         }
         return false;
     }
+
+    private void saveArrayList(ArrayList<String> arrayList) {
+/*        try {
+            try (FileOutputStream fileOutputStream = Context.openFileOutput("your.filename", Context.MODE_PRIVATE)) {
+                ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+                out.writeObject(arrayList);
+                out.close();
+                fileOutputStream.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    }
+
 }

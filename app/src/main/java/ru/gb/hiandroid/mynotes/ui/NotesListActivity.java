@@ -26,7 +26,7 @@ import ru.gb.hiandroid.mynotes.impl.NotesRepoImpl;
 
 public class NotesListActivity extends AppCompatActivity {
 
-    private static final boolean DEBUG_FLAG = true;
+    private static final boolean DEBUG_FLAG = false;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
     private final String log_modifier = " ";
@@ -89,11 +89,15 @@ public class NotesListActivity extends AppCompatActivity {
             if (result.getResultCode() == Activity.RESULT_OK) {
                 retNote = getNoteFromRetIntent(result); // это точка возврата из вызываемой активити!
 
-
-                notesRepo.updateNote(retNote.getNoteId(), retNote);
+                if (retNote.getNoteId() == 0) {
+                    notesRepo.createNote(retNote);
+                } else {
+                    notesRepo.updateNote(retNote.getNoteId(), retNote);
+                }
                 adapter.setData(notesRepo.getNotes());
                 adapter.notifyDataSetChanged();
-                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                logCycle("ID = " + retNote.getNoteId());
+                recyclerView.scrollToPosition(retNote.getNoteId()-1);
             } else {
                 logCycle("Return is empty");
             }
