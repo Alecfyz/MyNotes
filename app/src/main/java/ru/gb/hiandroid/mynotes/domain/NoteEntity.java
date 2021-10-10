@@ -1,10 +1,13 @@
 package ru.gb.hiandroid.mynotes.domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.Nullable;
 
-public class NoteEntity {
+public class NoteEntity implements Parcelable {
     @Nullable
-    private int id;
+    private int noteId;
     private String title;
     private String description;
 
@@ -13,9 +16,27 @@ public class NoteEntity {
         this.description = description;
     }
 
+    protected NoteEntity(Parcel in) {
+        noteId = in.readInt();
+        title = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<NoteEntity> CREATOR = new Creator<NoteEntity>() {
+        @Override
+        public NoteEntity createFromParcel(Parcel in) {
+            return new NoteEntity(in);
+        }
+
+        @Override
+        public NoteEntity[] newArray(int size) {
+            return new NoteEntity[size];
+        }
+    };
+
     @Nullable
-    public int getId() {
-        return id;
+    public int getNoteId() {
+        return noteId;
     }
 
     public String getTitle() {
@@ -34,7 +55,19 @@ public class NoteEntity {
         this.description = description;
     }
 
-    public void setId(@Nullable Integer id) {
-        this.id = id;
+    public void setNoteId(@Nullable Integer noteId) {
+        this.noteId = noteId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(noteId);
+        parcel.writeString(title);
+        parcel.writeString(description);
     }
 }

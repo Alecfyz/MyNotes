@@ -15,7 +15,7 @@ public class NotesRepoImpl implements NotesRepo {
     @Nullable
     @Override
     public Integer createNote(NoteEntity note) {
-        note.setId(++counter);
+        note.setNoteId(++counter);
         cache.add(note);
         return counter;
     }
@@ -28,7 +28,7 @@ public class NotesRepoImpl implements NotesRepo {
     @Override
     public boolean updateNote(int id, NoteEntity note) {
         deleteNote(id);
-        note.setId(id);
+        note.setNoteId(id);
         cache.add(note);
         return false;
     }
@@ -36,7 +36,7 @@ public class NotesRepoImpl implements NotesRepo {
     @Override
     public boolean deleteNote(int id) {
         for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getId() ==  id){
+            if (cache.get(i).getNoteId() ==  id){
                 cache.remove(i);
                 return true;
             }

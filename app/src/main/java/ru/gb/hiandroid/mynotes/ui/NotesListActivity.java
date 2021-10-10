@@ -24,6 +24,7 @@ import ru.gb.hiandroid.mynotes.domain.NotesRepo;
 import ru.gb.hiandroid.mynotes.impl.NotesRepoImpl;
 
 public class NotesListActivity extends AppCompatActivity {
+
     private static final boolean DEBUG_FLAG = true;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
@@ -49,8 +50,6 @@ public class NotesListActivity extends AppCompatActivity {
         initToolbar();
         initRecyclerView();
 
-//        setAdditionButtonsListeners();
-//        makeCurLauncher();
         prepareLauncher();
     }
 
@@ -75,40 +74,32 @@ public class NotesListActivity extends AppCompatActivity {
     }
 
     private void openNoteScreen(@Nullable NoteEntity item) {
-//        Intent intent = new Intent(this, NoteEditActivity.class);
-        // intent.putExtra("note, item) // нужно сделать parcelable
-
         Intent intent = new Intent(this, NoteEditActivity.class);
-        intent.putExtra(NoteEditActivity.TITLE_EXTRA_KEY, item.getTitle());
+        Bundle outData;
+//        item.putParcelable(NoteEditActivity.NOTE_ID_EXTRA_KEY, item.getTitle());
+//        outData.putParcelable(NoteEditActivity.TITLE_EXTRA_KEY, item.getTitle());
+//        outData.putParcelable(NoteEditActivity.DESCRIPTION_EXTRA_KEY, item.getTitle());
+        intent.putExtra(NoteEditActivity.NOTE_EXTRA_KEY, item);
         noteLauncher.launch(intent);
 
-//        startActivity(intent);
 
     }
-
-/*    private void setAdditionButtonsListeners() { /// !!!!!!!!!!!!!!!!!!!1
-        findViewById(R.id.switch_to_settings_button).setOnClickListener(v -> {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra(SettingsActivity.SETTINGS_ISNIGHT_THEME_EXTRA_KEY, isThemeNight);
-            settingsLauncher.launch(intent);
-        });
-    }*/
-
-/*    private void makeCurLauncher(NoteEntity item){
-        Intent intent = new Intent(this, NoteEditActivity.class);
-        intent.putExtra(NoteEditActivity.TITLE_EXTRA_KEY, item.);
-        settingsLauncher.launch(intent);
-    }*/
 
     private void prepareLauncher() { /// !!!!!!!!!!!!!!!!!!!1
         noteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == Activity.RESULT_OK) {
                 Intent data = result.getData(); // это точка возврата из вызываемой активити!
-                String newTitle = data.getStringExtra(NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
-                Toast.makeText(this, "Returned data = " + newTitle, Toast.LENGTH_SHORT).show();
+                String newId =          data.getStringExtra (NoteEditActivity.NOTE_ID_EXTRA_KEY);
+                String newTitle =       data.getStringExtra (NoteEditActivity.EVAL_TITLE_EXTRA_KEY);
+                String newDescription = data.getStringExtra (NoteEditActivity.EVAL_DESCR_EXTRA_KEY);
+                String newIddd = data.getStringExtra ("EXXXTRA");
+
+                Toast.makeText(this, "Ret id = " + newIddd
+                                                + ", \nRet Title= " + newTitle
+                                                + ",\n Ret desc = " + newDescription, Toast.LENGTH_LONG).show();
 //                setLocalTheme(); /// Здесь делаем что-то в списке заметок. - меняем данные отредактированной заметки.м
             } else {
-                logCycle("Return failed");
+                logCycle("Return is empty");
             }
         });
     }
