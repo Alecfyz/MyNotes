@@ -13,6 +13,7 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
     private List<NoteEntity> data = new ArrayList<>();
     private onItemClickListener clickListener = null;
+    private onDeleteItemClickListener clickDeleteListener = null;
 
     public void setData(List<NoteEntity> data) {
         this.data = data;
@@ -22,7 +23,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
     @NonNull
     @Override
     public NoteVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NoteVH(parent, clickListener);
+        return new NoteVH(parent, clickListener, clickDeleteListener);
     }
 
     @Override
@@ -41,11 +42,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteVH> {
         return data.size();
     }
 
-    public void  setOnItemClickListener(onItemClickListener listener) {
+    public void setOnItemClickListener(onItemClickListener listener) {
         clickListener = listener;
     }
 
+    public void setOnDeleteItemClickListener(onDeleteItemClickListener listener) {
+        clickDeleteListener = listener;
+    }
+
     interface onItemClickListener {
+        void onItemClick(NoteEntity item);
+    }
+
+    interface onDeleteItemClickListener {
         void onItemClick(NoteEntity item);
     }
 }

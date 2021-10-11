@@ -22,9 +22,11 @@ public class NoteVH extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public NoteVH(@NonNull ViewGroup parent, NotesAdapter.onItemClickListener clickListener) {
+    public NoteVH(@NonNull ViewGroup parent, NotesAdapter.onItemClickListener clickListener, NotesAdapter.onDeleteItemClickListener clickDeleteListener) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note, parent, false));
         itemView.setOnClickListener(v -> clickListener.onItemClick(note));
+//        itemView.setOnClickListener(v -> clickDeleteListener.onItemClick(note));
+//        delete.setOnClickListener(v -> clickListener.onItemClick(note));
 
     }
 

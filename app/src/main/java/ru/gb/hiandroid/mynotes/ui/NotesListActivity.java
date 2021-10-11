@@ -32,7 +32,7 @@ public class NotesListActivity extends AppCompatActivity {
     private final String log_modifier = " ";
     private NotesRepo notesRepo = new NotesRepoImpl();
     private RecyclerView recyclerView;
-    private NotesAdapter adapter = new NotesAdapter();
+    private final NotesAdapter adapter = new NotesAdapter();
     private ActivityResultLauncher<Intent> noteLauncher;
     private NoteEntity retNote;
 
@@ -55,12 +55,10 @@ public class NotesListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.new_note_menu: {
-                logCycle("--< Menu! >--", true);
-                openNoteScreen(null);
-                return true;
-            }
+        if (item.getItemId() == R.id.new_note_menu) {
+            logCycle("--< Menu! >--", true);
+            openNoteScreen(null);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -87,13 +85,14 @@ public class NotesListActivity extends AppCompatActivity {
                     }
                     updateNoteList();
                     logCycle("ID = " + retNote.getNoteId());
-                    recyclerView.scrollToPosition(retNote.getNoteId() );
+                    recyclerView.smoothScrollToPosition(retNote.getNoteId() - 1);
                     break;
 
                 case (NoteEditActivity.RESULT_DELETE):
                     retNote = getNoteFromRetIntent(result);
                     if (retNote.getNoteId() > 0) {
                         deleteNoteFromList(retNote.getNoteId());
+                        recyclerView.smoothScrollToPosition(retNote.getNoteId() - 1);
                     }
                     break;
 
@@ -109,7 +108,6 @@ public class NotesListActivity extends AppCompatActivity {
         notesRepo.deleteNote(retNote.getNoteId());
         logCycle("ID to delete = " + retNote.getNoteId());
         updateNoteList();
-        recyclerView.scrollToPosition(1);
     }
 
     private void updateNoteList() {
@@ -164,7 +162,6 @@ public class NotesListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(this::onItemClick);
-
         adapter.setData(notesRepo.getNotes());
     }
 

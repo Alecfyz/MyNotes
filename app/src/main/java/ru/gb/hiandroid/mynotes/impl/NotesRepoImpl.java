@@ -16,7 +16,7 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 import ru.gb.hiandroid.mynotes.domain.NotesRepo;
 
 public class NotesRepoImpl implements NotesRepo {
-    private final ArrayList <NoteEntity> cache = new ArrayList<>();
+    private final ArrayList<NoteEntity> cache = new ArrayList<>();
     private int counter = 0;
 
     @Nullable
@@ -34,7 +34,7 @@ public class NotesRepoImpl implements NotesRepo {
         if (!tmpNotesList.isEmpty()) {
             Collections.sort(tmpNotesList, (p1, p2) -> p1.getNoteId() - p2.getNoteId());
         }
-        return tmpNotesList ;
+        return tmpNotesList;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class NotesRepoImpl implements NotesRepo {
     @Override
     public boolean deleteNote(int id) {
         for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getNoteId() ==  id){
+            if (cache.get(i).getNoteId() == id) {
                 cache.remove(i);
                 return true;
             }
