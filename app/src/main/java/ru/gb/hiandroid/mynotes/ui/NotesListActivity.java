@@ -26,32 +26,23 @@ import ru.gb.hiandroid.mynotes.impl.NotesRepoImpl;
 
 public class NotesListActivity extends AppCompatActivity {
 
-    private static final boolean DEBUG_FLAG = false;
+    private static final boolean DEBUG_FLAG = true;
     private Toolbar toolbar;
     private final String CUR_ACTIVITY_TAG = "@@@ ListActivity";
     private final String log_modifier = " ";
-
     private NotesRepo notesRepo = new NotesRepoImpl();
-
     private RecyclerView recyclerView;
-
     private NotesAdapter adapter = new NotesAdapter();
-
     private ActivityResultLauncher<Intent> noteLauncher;
-
     private NoteEntity retNote;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
-
         fillRepoWithTestValues();
-
         initToolbar();
         initRecyclerView();
-
         prepareLauncher();
     }
 
@@ -84,24 +75,46 @@ public class NotesListActivity extends AppCompatActivity {
 
     }
 
-    private void prepareLauncher() { /// !!!!!!!!!!!!!!!!!!!1
+    private void prepareLauncher() {
         noteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == Activity.RESULT_OK) {
-                retNote = getNoteFromRetIntent(result); // это точка возврата из вызываемой активити!
+            switch (result.getResultCode()) {
+                case (Activity.RESULT_OK):
+                    retNote = getNoteFromRetIntent(result); // это точка возврата из вызываемой активити!
+                    if (retNote.getNoteId() == 0) {
+                        notesRepo.createNote(retNote);
+                    } else {
+                        notesRepo.updateNote(retNote.getNoteId(), retNote);
+                    }
+                    updateNoteList();
+                    logCycle("ID = " + retNote.getNoteId());
+                    recyclerView.scrollToPosition(retNote.getNoteId() );
+                    break;
 
-                if (retNote.getNoteId() == 0) {
-                    notesRepo.createNote(retNote);
-                } else {
-                    notesRepo.updateNote(retNote.getNoteId(), retNote);
-                }
-                adapter.setData(notesRepo.getNotes());
-                adapter.notifyDataSetChanged();
-                logCycle("ID = " + retNote.getNoteId());
-                recyclerView.scrollToPosition(retNote.getNoteId() - 1);
-            } else {
-                logCycle("Return is empty");
+                case (NoteEditActivity.RESULT_DELETE):
+                    retNote = getNoteFromRetIntent(result);
+                    if (retNote.getNoteId() > 0) {
+                        deleteNoteFromList(retNote.getNoteId());
+                    }
+                    break;
+
+                default:
+                    logCycle("Return is empty");
+                    break;
             }
+
         });
+    }
+
+    private void deleteNoteFromList(int noteId) {
+        notesRepo.deleteNote(retNote.getNoteId());
+        logCycle("ID to delete = " + retNote.getNoteId());
+        updateNoteList();
+        recyclerView.scrollToPosition(1);
+    }
+
+    private void updateNoteList() {
+        adapter.setData(notesRepo.getNotes());
+        adapter.notifyDataSetChanged();
     }
 
     private NoteEntity getNoteFromRetIntent(ActivityResult result) {

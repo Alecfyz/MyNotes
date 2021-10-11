@@ -15,11 +15,13 @@ import ru.gb.hiandroid.mynotes.domain.NoteEntity;
 
 public class NoteEditActivity extends AppCompatActivity {
     public static final String NOTE_EXTRA_KEY = "NOTE_EXTRA_KEY";
+    public static final int RESULT_DELETE = -99;
     private final String CUR_ACTIVITY_TAG = "@@@@ EditActivity";
     private final String log_modifyer = " ";
     private EditText titleEditText;
     private EditText descrEditText;
     private Button saveButton;
+    private Button deleteButton;
     private NoteEntity note;
 
     @Override
@@ -32,6 +34,26 @@ public class NoteEditActivity extends AppCompatActivity {
 
         initAllViews();
         fillAllViews(note);
+        setupAllViews();
+    }
+
+    private void setupAllViews() {
+        setupSaveButton();
+        setupDeleteButton();
+    }
+
+    private void setupDeleteButton() {
+        deleteButton.setOnClickListener(v -> {
+            NoteEntity noteEntity = new NoteEntity("","");
+                noteEntity.setNoteId(note.getNoteId());
+                Intent outData = new Intent(this, NoteEditActivity.class);
+                outData.putExtra(NOTE_EXTRA_KEY, noteEntity);
+                setResult(RESULT_DELETE, outData);
+            finish();
+        });
+    }
+
+    private void setupSaveButton() {
         saveButton.setOnClickListener(v -> {
             NoteEntity noteEntity = new NoteEntity(
 
@@ -69,6 +91,7 @@ public class NoteEditActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.text_title_edit);
         descrEditText = findViewById(R.id.text_descript_edit);
         saveButton = findViewById(R.id.save_button);
+        deleteButton = findViewById(R.id.delete_button);
     }
 
     public void logCycle(NoteEntity note, String point) {

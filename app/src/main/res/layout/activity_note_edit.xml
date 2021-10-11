@@ -26,11 +26,25 @@
         android:inputType="text"
         android:textSize="@dimen/notes_descr_textsize"
         tools:text="Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания " />
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <Button
         android:id="@+id/save_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/layout_standart_margin"
+        android:layout_marginHorizontal="@dimen/layout_standart_margin"
         android:text="@string/title_save_button" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_delete_button"
+        android:backgroundTint="@color/red"
+        android:layout_marginHorizontal="@dimen/layout_standart_margin"/>
+</LinearLayout>
 
 </LinearLayout>
