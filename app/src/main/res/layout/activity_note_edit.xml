@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/layout_standart_margin"
+    android:orientation="vertical"
+    tools:context=".ui.NoteEditActivity">
+
+    <EditText
+        android:id="@+id/text_title_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/title_note_edit"
+        android:hint="@string/title_note_edit"
+        android:inputType="text"
+        android:textSize="@dimen/notes_title_textsize" />
+
+
+    <EditText
+        android:id="@+id/text_descript_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/descr_note_edit"
+        android:hint="@string/descr_note_edit"
+        android:inputType="text"
+        android:textSize="@dimen/notes_descr_textsize"
+        tools:text="Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания Это тело описания " />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_save_button" />
+
+</LinearLayout>
